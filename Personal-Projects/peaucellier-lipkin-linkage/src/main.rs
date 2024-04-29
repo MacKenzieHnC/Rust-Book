@@ -3,6 +3,18 @@ use std::io;
 
 fn main() {
     let span = get_span();
+
+    // try heuristic, works well for numbers divisible by 12 or sufficiently large numbers
+    let points: [Point2<f32>; 3] = [
+        Point2::new(span / 16.0, 5.0 * span / 24.0),
+        Point2::new(13.0 * span / 48.0, 13.0 * span / 48.0),
+        Point2::new(span / 2.0, span / 2.0),
+    ];
+
+    println!("key points:");
+    for p in points {
+        println!("{p}");
+    }
 }
 
 fn get_span() -> f32 {
