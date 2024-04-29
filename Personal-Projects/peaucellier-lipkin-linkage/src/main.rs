@@ -2,16 +2,21 @@ use nalgebra::Point2;
 use std::io;
 
 fn main() {
-    println!("How tall is the linkage?");
+    let span = get_span();
+}
 
-    let mut h = String::new();
+fn get_span() -> f32 {
+    println!("How far does the linkage need to travel?");
 
-    io::stdin().read_line(&mut h).expect("Failed to read line");
+    let mut span = String::new();
 
-    let h: f32 = match h.trim().parse() {
+    io::stdin()
+        .read_line(&mut span)
+        .expect("Failed to read line");
+
+    let span: f32 = match span.trim().parse() {
         Ok(num) => num,
-        Err(e) => panic!("h is not a number: {:?}", e),
+        Err(e) => panic!("span is not a number: {:?}", e),
     };
-
-    println!("The linkage is {h} tall!")
+    return span;
 }
