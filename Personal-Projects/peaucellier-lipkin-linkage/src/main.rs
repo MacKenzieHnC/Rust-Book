@@ -3,13 +3,7 @@ use std::io;
 
 fn main() {
     let span = get_span();
-
-    // try heuristic, works well for numbers divisible by 12 or sufficiently large numbers
-    let points: [Point2<f32>; 3] = [
-        Point2::new(span / 16.0, 5.0 * span / 24.0),
-        Point2::new(13.0 * span / 48.0, 13.0 * span / 48.0),
-        Point2::new(span / 2.0, span / 2.0),
-    ];
+    let points = get_linkage(span);
 
     println!("key points:");
     for p in points {
@@ -31,4 +25,14 @@ fn get_span() -> f32 {
         Err(e) => panic!("span is not a number: {:?}", e),
     };
     return span;
+}
+
+fn get_linkage(span: f32) -> [Point2<f32>; 3] {
+    let scale = span / 8.0;
+
+    return [
+        Point2::new(1.0 * scale, 2.0 * scale),
+        Point2::new(3.0 * scale, 3.0 * scale),
+        Point2::new(span / 2.0, span / 2.0),
+    ];
 }
